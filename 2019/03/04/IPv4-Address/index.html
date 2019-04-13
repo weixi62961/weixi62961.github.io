@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="IPv4编址简介 引子同事微信上丢过来一条消息：服务访问不了，http://10.200.48.106:9100/ 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。 IPv4编址现状IPv4（I">
+<meta name="keywords" content="技术, 工具, 生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IPv4编址简介">
+<meta property="og:url" content="https://weixi62961.github.io/2019/03/04/IPv4-Address/index.html">
+<meta property="og:site_name" content="萃取之心">
+<meta property="og:description" content="IPv4编址简介 引子同事微信上丢过来一条消息：服务访问不了，http://10.200.48.106:9100/ 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。 IPv4编址现状IPv4（I">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-04T09:43:41.760Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IPv4编址简介">
+<meta name="twitter:description" content="IPv4编址简介 引子同事微信上丢过来一条消息：服务访问不了，http://10.200.48.106:9100/ 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。 IPv4编址现状IPv4（I">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://weixi62961.github.io/2019/03/04/IPv4-Address/">
+
+
+
+
+
+  <title>IPv4编址简介 | 萃取之心</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">萃取之心</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">传播有价值的信息</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weixi62961.github.io/2019/03/04/IPv4-Address/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiXi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="萃取之心">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">IPv4编址简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T17:35:03+08:00">
+                2019-03-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/04/IPv4-Address/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/04/IPv4-Address/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>IPv4编址简介</p>
+<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>同事微信上丢过来一条消息：服务访问不了，<a href="http://10.200.48.106:9100/" target="_blank" rel="noopener">http://10.200.48.106:9100/</a> 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。</p>
+<h1 id="IPv4编址现状"><a href="#IPv4编址现状" class="headerlink" title="IPv4编址现状"></a>IPv4编址现状</h1><p>IPv4（Internet Protocol version 4，网际协议版本4）使用32位(4字节)数值进行编址，这些位被分为4段，每一段8位，也就是1个字节。IPv4地址常用点分十进制表示，例如198.168.100.11。</p>
+<p>理论上IPv4最多可以提供2<sup>32</sup>（约42.9亿）个IP地址。<br>IP地址的全球性管理机构为互联网号码分配局（IANA），其下有五个局域网际网络注册管理机构（RIR）。由IANA管理的IPv4位址，于2011年1月31日完全用尽。其他五个区域的可核发地址，也随之陆续用尽：亚太地区在2011年4月15日用尽，欧洲地区在2012年9月14日，拉丁美洲及加勒比海地区在2014年6月10日，北美地区在2015年9月24日。当前全球仅剩主管非洲的AFRINIC预计2019年才会发放完所有的IPv4位址。<br>在1991年11月，互联网工程任务组（IETF）为了推迟这个问题发生的时间点，推出分类网络方案。1993年，推出网络地址转换（NAT）与无类别域间路由（CIDR）。但是这些过渡方案皆无法阻止地址枯竭问题的发生，只能减缓它的发生速度，最终的解决方案，仍然需要转换到IPv6。</p>
+<h1 id="分类网络"><a href="#分类网络" class="headerlink" title="分类网络"></a>分类网络</h1><p>IP地址由网络地址（Network Address）和主机地址（Host Address）组成。网络地址唯一标识一个网络，主机地址唯一标识网络中的设备。</p>
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>前缀</th>
+<th>网络地址位数/主机地址位数</th>
+<th>范围</th>
+<th>网络数</th>
+<th>主机数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A类</td>
+<td>0</td>
+<td>8/24</td>
+<td>0.0.0.0 ~ 127.255.255.255</td>
+<td>2<sup>7</sup>=128</td>
+<td>2^24^ - 2</td>
+</tr>
+<tr>
+<td>B类</td>
+<td>10</td>
+<td>16/16</td>
+<td>128.0.0.0 ~ 191.255.255.255</td>
+<td>2<sup>14</sup>=16384</td>
+<td>2<sup>16</sup></td>
+</tr>
+<tr>
+<td>C类</td>
+<td>110</td>
+<td>24/8</td>
+<td>192.0.0.0 ~ 223.255.255.255</td>
+<td>2<sup>21</sup></td>
+<td>2<sup>8</sup></td>
+</tr>
+<tr>
+<td>D类</td>
+<td>1110</td>
+<td>未定义</td>
+<td>224.0.0.0 ~ 239.255.255.255</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>E类</td>
+<td>11110</td>
+<td>未定义</td>
+<td>240.0.0.0 ~ 247.255.255.255</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>例如192.168.100.11，首先看前8位，是192，根据上述范围可判断为C类网络， 网络地址位数为24位， 因此网络地址为192.168.100；主机地址位数为8位，因此主机地址为11。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
+<li><a href="https://zh.wikipedia.org/wiki/IPv4" target="_blank" rel="noopener">维基百科IPv4</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>与我一起，传播价值！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="WeiXi 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    WeiXi
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://weixi62961.github.io/2019/03/04/IPv4-Address/" title="IPv4编址简介">https://weixi62961.github.io/2019/03/04/IPv4-Address/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="WeiXi">
+            
+              <p class="site-author-name" itemprop="name">WeiXi</p>
+              <p class="site-description motion-element" itemprop="description">分离有价值的信息，朝熵减的方向前进</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/weixi2008" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:weixi62961@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4编址现状"><span class="nav-number">2.</span> <span class="nav-text">IPv4编址现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类网络"><span class="nav-number">3.</span> <span class="nav-text">分类网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WeiXi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://weixi.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://weixi62961.github.io/2019/03/04/IPv4-Address/';
+          this.page.identifier = '2019/03/04/IPv4-Address/';
+          this.page.title = 'IPv4编址简介';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://weixi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
