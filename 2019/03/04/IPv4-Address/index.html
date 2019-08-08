@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="IPv4编址简介 引子同事微信上丢过来一条消息：服务访问不了，http://10.200.48.106:9100/ 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。 IPv4编址现状IPv4（I">
+<meta name="description" content="引子同事微信上丢过来一条消息。http://10.200.48.106:9100/，服务无法访问了 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我再试试。过了一会儿，他说，访问正常了，但为什么要登录VPN？ 我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是私有 IP？ 我说，看下文。">
 <meta name="keywords" content="技术, 工具, 生活">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IPv4编址简介">
+<meta property="og:title" content="IPv4 编址简明教程">
 <meta property="og:url" content="https://weixi62961.github.io/2019/03/04/IPv4-Address/index.html">
 <meta property="og:site_name" content="萃取之心">
-<meta property="og:description" content="IPv4编址简介 引子同事微信上丢过来一条消息：服务访问不了，http://10.200.48.106:9100/ 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。 IPv4编址现状IPv4（I">
+<meta property="og:description" content="引子同事微信上丢过来一条消息。http://10.200.48.106:9100/，服务无法访问了 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我再试试。过了一会儿，他说，访问正常了，但为什么要登录VPN？ 我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是私有 IP？ 我说，看下文。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T09:43:41.760Z">
+<meta property="og:updated_time" content="2019-08-08T14:56:46.680Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IPv4编址简介">
-<meta name="twitter:description" content="IPv4编址简介 引子同事微信上丢过来一条消息：服务访问不了，http://10.200.48.106:9100/ 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。 IPv4编址现状IPv4（I">
+<meta name="twitter:title" content="IPv4 编址简明教程">
+<meta name="twitter:description" content="引子同事微信上丢过来一条消息。http://10.200.48.106:9100/，服务无法访问了 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我再试试。过了一会儿，他说，访问正常了，但为什么要登录VPN？ 我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是私有 IP？ 我说，看下文。">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>IPv4编址简介 | 萃取之心</title>
+  <title>IPv4 编址简明教程 | 萃取之心</title>
   
 
 
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">IPv4编址简介</h1>
+          <h1 class="post-title" itemprop="name headline">IPv4 编址简明教程</h1>
         
 
         <div class="post-meta">
@@ -310,18 +310,39 @@
       
 
       
-        <p>IPv4编址简介</p>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>同事微信上丢过来一条消息：服务访问不了，<a href="http://10.200.48.106:9100/" target="_blank" rel="noopener">http://10.200.48.106:9100/</a> 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。</p>
-<h1 id="IPv4编址现状"><a href="#IPv4编址现状" class="headerlink" title="IPv4编址现状"></a>IPv4编址现状</h1><p>IPv4（Internet Protocol version 4，网际协议版本4）使用32位(4字节)数值进行编址，这些位被分为4段，每一段8位，也就是1个字节。IPv4地址常用点分十进制表示，例如198.168.100.11。</p>
-<p>理论上IPv4最多可以提供2<sup>32</sup>（约42.9亿）个IP地址。<br>IP地址的全球性管理机构为互联网号码分配局（IANA），其下有五个局域网际网络注册管理机构（RIR）。由IANA管理的IPv4位址，于2011年1月31日完全用尽。其他五个区域的可核发地址，也随之陆续用尽：亚太地区在2011年4月15日用尽，欧洲地区在2012年9月14日，拉丁美洲及加勒比海地区在2014年6月10日，北美地区在2015年9月24日。当前全球仅剩主管非洲的AFRINIC预计2019年才会发放完所有的IPv4位址。<br>在1991年11月，互联网工程任务组（IETF）为了推迟这个问题发生的时间点，推出分类网络方案。1993年，推出网络地址转换（NAT）与无类别域间路由（CIDR）。但是这些过渡方案皆无法阻止地址枯竭问题的发生，只能减缓它的发生速度，最终的解决方案，仍然需要转换到IPv6。</p>
-<h1 id="分类网络"><a href="#分类网络" class="headerlink" title="分类网络"></a>分类网络</h1><p>IP地址由网络地址（Network Address）和主机地址（Host Address）组成。网络地址唯一标识一个网络，主机地址唯一标识网络中的设备。</p>
-<table>
+        <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>同事微信上丢过来一条消息。<a href="http://10.200.48.106:9100/，服务无法访问了" target="_blank" rel="noopener">http://10.200.48.106:9100/，服务无法访问了</a> 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我再试试。过了一会儿，他说，访问正常了，但为什么要登录VPN？ 我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是私有 IP？ 我说，看下文。<br><a id="more"></a></p>
+<h1 id="IPv4编址现状"><a href="#IPv4编址现状" class="headerlink" title="IPv4编址现状"></a>IPv4编址现状</h1><p>IPv4（Internet Protocol version 4，网际协议版本4）使用 4 字节(32位)数值进行编址，这些位被分为4段，每一段8位，也就是1个字节。常用点分十进制表示，例如 192.168.100.101。</p>
+<p>IPv4使用4个字节，理论上最多可以提供2<sup>32</sup>（约42.9亿）个IP地址。<br>IP地址的全球性管理机构为互联网号码分配局（IANA），其下有五个局域网际网络注册管理机构（RIR）。截止目前，IP地址即将耗尽。详细可参考文献1。<br>1993年，互联网工程任务组（IETF）推出网络地址转换（NAT）与无类别域间路由（CIDR）。这些过渡方案减缓了IP 耗尽的发生速度，最终的解决方案仍然需要转换到IPv6。本文仅讲解 IPv4 编址。</p>
+<h1 id="分类网络"><a href="#分类网络" class="headerlink" title="分类网络"></a>分类网络</h1><p>IP地址由网络地址（Network Address）和主机地址（Host Address）两部分组成。网络地址唯一标识一个网络，主机地址唯一标识网络中的设备。根据网络规模对网络进行分类，分为 A、B、C、D、E五类网络，一般常用的是前3种，因此下面主要介绍 A、B、C三类网络。</p>
+<h2 id="A-类网络"><a href="#A-类网络" class="headerlink" title="A 类网络"></a>A 类网络</h2><ul>
+<li>网络地址占1个字节（8位），其中第1个字节的第1个比特永远为0。主机地址占3个字节（24位）。以1个字节一组可表示为 网络.主机.主机.主机, 可认为默认子网掩码为 255.0.0.0。</li>
+<li>网络个数有多少个？ 第1个字节网络地址范围 <strong>0</strong>0000000 ~ <strong>0</strong>1111111，即 0 ~ 127。网络个数2<sup>7</sup>=128个。但其中0为默认路由保留，127为环回测试保留，实际可用 A 类网络共 128-2=126 个。</li>
+<li>每个网络主机个数有多少个？主机地址占3字节，共计 2<sup>24</sup>=16777216 个。其中主机地址全0与全1分别为网络与广播保留，实际可用为 16777214 个，超过1600万个。</li>
+<li>A 类网络 IP 地址举例： 8.8.8.8, 10.1.100.101</li>
+</ul>
+<h2 id="B-类网络"><a href="#B-类网络" class="headerlink" title="B 类网络"></a>B 类网络</h2><ul>
+<li>网络地址占2个字节（16位），其中第1个字节的第1个比特永远为1，第2个比特永远为0。主机地址占2个字节（16位）。以1个字节一组可表示为 网络.网络.主机.主机, 可认为默认子网掩码为 255.255.0.0。</li>
+<li>网络个数有多少个？ 第1个字节网络地址范围 <strong>10</strong>000000 ~ <strong>10</strong>111111，即 128 ~ 191。网络个数2<sup>14</sup>=16384个。实际可用 B 类网络共 16384 个。</li>
+<li>每个网络主机个数有多少个？主机地址占2字节，共计 2<sup>16</sup>=65536 个。其中主机地址全0与全1分别为网络与广播保留，实际可用为 65534 个，超过6万个。</li>
+<li>B 类网络 IP 地址举例： 114.114.114.114, 172.16.100.101</li>
+</ul>
+<h2 id="C-类网络"><a href="#C-类网络" class="headerlink" title="C 类网络"></a>C 类网络</h2><ul>
+<li>网络地址占3个字节（24位），其中第1个字节的前2个比特永远为1，第3个比特永远为0。主机地址占1个字节（8位）。以1个字节一组可表示为 网络.网络.网络.主机, 可认为默认子网掩码为 255.255.255.0。</li>
+<li>网络个数有多少个？ 第1个字节网络地址范围 <strong>110</strong>00000 ~ <strong>110</strong>11111，即 192 ~ 223。网络个数2<sup>21</sup>=2097152个。实际可用 C 类网络共 2097152 个，超过200万个。</li>
+<li>每个网络主机个数有多少个？主机地址占1字节，共计 2<sup>8</sup>=256 个。其中主机地址全0与全1分别为网络与广播保留，实际可用为 254 个。</li>
+<li>C 类网络 IP 地址举例： 192.168.100.101</li>
+</ul>
+<h2 id="D、E-类网络"><a href="#D、E-类网络" class="headerlink" title="D、E 类网络"></a>D、E 类网络</h2><ul>
+<li>D 类网络用于组播地址。第1个字节网络地址范围 224 ~ 239。</li>
+<li>E 类网络用于科研保留。第1个字节网络地址范围 240 ~ 247。</li>
+</ul>
+<h2 id="分类网络总结表"><a href="#分类网络总结表" class="headerlink" title="分类网络总结表"></a>分类网络总结表</h2><table>
 <thead>
 <tr>
 <th>分类</th>
-<th>前缀</th>
-<th>网络地址位数/主机地址位数</th>
-<th>范围</th>
+<th>第1个字节前缀</th>
+<th>网络地址/主机地址</th>
+<th>第1个字节范围</th>
 <th>网络数</th>
 <th>主机数</th>
 </tr>
@@ -330,47 +351,129 @@
 <tr>
 <td>A类</td>
 <td>0</td>
-<td>8/24</td>
-<td>0.0.0.0 ~ 127.255.255.255</td>
-<td>2<sup>7</sup>=128</td>
-<td>2^24^ - 2</td>
+<td>1字节(8位)/3字节(24位)</td>
+<td>0 ~ 127</td>
+<td>2<sup>7</sup>-2=126</td>
+<td>2<sup>7</sup>-2=126</td>
 </tr>
 <tr>
 <td>B类</td>
 <td>10</td>
-<td>16/16</td>
-<td>128.0.0.0 ~ 191.255.255.255</td>
+<td>2字节(16位)/2字节(16位)</td>
+<td>128 ~ 191</td>
 <td>2<sup>14</sup>=16384</td>
-<td>2<sup>16</sup></td>
+<td>2<sup>16</sup>-2=65534</td>
 </tr>
 <tr>
 <td>C类</td>
 <td>110</td>
-<td>24/8</td>
-<td>192.0.0.0 ~ 223.255.255.255</td>
-<td>2<sup>21</sup></td>
-<td>2<sup>8</sup></td>
+<td>3字节(24位)/1字节(8位)</td>
+<td>192 ~ 223</td>
+<td>2<sup>21</sup>=2097152</td>
+<td>2<sup>8</sup>-2=254</td>
 </tr>
 <tr>
 <td>D类</td>
 <td>1110</td>
 <td>未定义</td>
-<td>224.0.0.0 ~ 239.255.255.255</td>
-<td></td>
-<td></td>
+<td>224 ~ 239</td>
+<td>N/A</td>
+<td>N/A</td>
 </tr>
 <tr>
 <td>E类</td>
 <td>11110</td>
 <td>未定义</td>
-<td>240.0.0.0 ~ 247.255.255.255</td>
-<td></td>
+<td>240 ~ 247</td>
+<td>N/A</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-<p>例如192.168.100.11，首先看前8位，是192，根据上述范围可判断为C类网络， 网络地址位数为24位， 因此网络地址为192.168.100；主机地址位数为8位，因此主机地址为11。</p>
+<h2 id="特殊用途的-IP"><a href="#特殊用途的-IP" class="headerlink" title="特殊用途的 IP"></a>特殊用途的 IP</h2><p>某些 IP 地址为特殊用途而保留，不能将之分配给设备。详细可参考文献1。</p>
+<table>
+<thead>
+<tr>
+<th>地址说明</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.0.0.0</td>
+<td>默认路由</td>
+</tr>
+<tr>
+<td>255.255.255.255</td>
+<td>任意网络所有主机广播</td>
+</tr>
+<tr>
+<td>主机地址全0 192.168.100.0</td>
+<td>网络地址</td>
+</tr>
+<tr>
+<td>主机地址全1 192.168.100.255</td>
+<td>此网络中所有主机广播</td>
+</tr>
+<tr>
+<td>127.0.0.1 ~ 127.255.255.254</td>
+<td>环回（本地主机）测试本机 IP 协议栈</td>
+</tr>
+</tbody>
+</table>
+<h1 id="私有-IP-地址"><a href="#私有-IP-地址" class="headerlink" title="私有 IP 地址"></a>私有 IP 地址</h1><ul>
+<li>专用网络是指遵守RFC 1918（IPV4）使用私有IP地址空间的网络。</li>
+<li>私有IP无法直接连接互联网，需要使用网络地址转换（Network Address Translator，NAT）或者代理服务器 （Proxy Server）来实现。</li>
+<li>私有IP一方面为局域网提供了一定的安全性，另一方面也节省了宝贵的 IP 地址空间。例如利用专用网络，整个公司甚至仅需一个公网 IP 即可满足全公司访问互联网的需求。</li>
+<li>RFC1918规定，私有 IP 无法在互联网上进行全局路由，仅能用于局域网中。</li>
+<li>私有 IP 包括1个 A 类网络（10.0.0.0/8）， 16个 B 类网络(172.16.0.0/12)，256个 C 类网络(192.168.0.0/16)</li>
+</ul>
+<h2 id="私有-IP-总结表"><a href="#私有-IP-总结表" class="headerlink" title="私有 IP 总结表"></a>私有 IP 总结表</h2><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>网络个数</th>
+<th>IP 区段</th>
+<th>IP数量</th>
+<th>CIDR（子网掩码）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A 类</td>
+<td>1 个</td>
+<td>10.0.0.0 ~ 10.255.255.255</td>
+<td>16777216</td>
+<td>10.0.0.0/8(255.0.0.0)</td>
+</tr>
+<tr>
+<td>B 类</td>
+<td>16 个</td>
+<td>172.16.0.0 ~ 172.31.255.255</td>
+<td>1048576</td>
+<td>172.16.0.0/12(255.240.0.0)</td>
+</tr>
+<tr>
+<td>C 类</td>
+<td>256 个</td>
+<td>192.168.0.0 ~ 192.168.255.255</td>
+<td>65536</td>
+<td>10.0.0.0/8(255.255.0.0)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>至此，聪明的你应该对 IPv4编址有了清晰的认识吧？ 最后考考你，下面哪些 IP 地址是私有 IP 呢？</p>
+<ol>
+<li>10.10.10.10</li>
+<li>172.10.10.10</li>
+<li>172.20.10.10</li>
+<li>192.168.10.10</li>
+<li>192.192.10.10</li>
+</ol>
 <h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
 <li><a href="https://zh.wikipedia.org/wiki/IPv4" target="_blank" rel="noopener">维基百科IPv4</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E4%B8%93%E7%94%A8%E7%BD%91%E7%BB%9C" target="_blank" rel="noopener">维基百科专用网络</a></li>
+<li>CCNA 学习指南 - 数据中心</li>
 </ol>
 
       
@@ -416,7 +519,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://weixi62961.github.io/2019/03/04/IPv4-Address/" title="IPv4编址简介">https://weixi62961.github.io/2019/03/04/IPv4-Address/</a>
+    <a href="https://weixi62961.github.io/2019/03/04/IPv4-Address/" title="IPv4 编址简明教程">https://weixi62961.github.io/2019/03/04/IPv4-Address/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -537,7 +640,7 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
-                    <a href="https://github.com/weixi2008" target="_blank" title="GitHub">
+                    <a href="https://github.com/weixi62961" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
@@ -572,7 +675,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4编址现状"><span class="nav-number">2.</span> <span class="nav-text">IPv4编址现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类网络"><span class="nav-number">3.</span> <span class="nav-text">分类网络</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引子"><span class="nav-number">1.</span> <span class="nav-text">引子</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4编址现状"><span class="nav-number">2.</span> <span class="nav-text">IPv4编址现状</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分类网络"><span class="nav-number">3.</span> <span class="nav-text">分类网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-类网络"><span class="nav-number">3.1.</span> <span class="nav-text">A 类网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-类网络"><span class="nav-number">3.2.</span> <span class="nav-text">B 类网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-类网络"><span class="nav-number">3.3.</span> <span class="nav-text">C 类网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#D、E-类网络"><span class="nav-number">3.4.</span> <span class="nav-text">D、E 类网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分类网络总结表"><span class="nav-number">3.5.</span> <span class="nav-text">分类网络总结表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊用途的-IP"><span class="nav-number">3.6.</span> <span class="nav-text">特殊用途的 IP</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#私有-IP-地址"><span class="nav-number">4.</span> <span class="nav-text">私有 IP 地址</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#私有-IP-总结表"><span class="nav-number">4.1.</span> <span class="nav-text">私有 IP 总结表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -744,7 +847,7 @@
         var disqus_config = function () {
           this.page.url = 'https://weixi62961.github.io/2019/03/04/IPv4-Address/';
           this.page.identifier = '2019/03/04/IPv4-Address/';
-          this.page.title = 'IPv4编址简介';
+          this.page.title = 'IPv4 编址简明教程';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://weixi.disqus.com/embed.js';
