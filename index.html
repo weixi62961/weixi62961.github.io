@@ -252,7 +252,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/04/IPv4-Address/" itemprop="url">IPv4编址简介</a></h1>
+                <a class="post-title-link" href="/2019/03/04/IPv4-Address/" itemprop="url">IPv4 编址简明教程</a></h1>
         
 
         <div class="post-meta">
@@ -313,74 +313,17 @@
 
       
         
-          
-            <p>IPv4编址简介</p>
-<h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>同事微信上丢过来一条消息：服务访问不了，<a href="http://10.200.48.106:9100/" target="_blank" rel="noopener">http://10.200.48.106:9100/</a> 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我试试。过了一会儿，他说，登录了VPN，访问正常了。但为什么要登录VPN？我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是内网，哪些IP是外网？ 我说，看下文。</p>
-<h1 id="IPv4编址现状"><a href="#IPv4编址现状" class="headerlink" title="IPv4编址现状"></a>IPv4编址现状</h1><p>IPv4（Internet Protocol version 4，网际协议版本4）使用32位(4字节)数值进行编址，这些位被分为4段，每一段8位，也就是1个字节。IPv4地址常用点分十进制表示，例如198.168.100.11。</p>
-<p>理论上IPv4最多可以提供2<sup>32</sup>（约42.9亿）个IP地址。<br>IP地址的全球性管理机构为互联网号码分配局（IANA），其下有五个局域网际网络注册管理机构（RIR）。由IANA管理的IPv4位址，于2011年1月31日完全用尽。其他五个区域的可核发地址，也随之陆续用尽：亚太地区在2011年4月15日用尽，欧洲地区在2012年9月14日，拉丁美洲及加勒比海地区在2014年6月10日，北美地区在2015年9月24日。当前全球仅剩主管非洲的AFRINIC预计2019年才会发放完所有的IPv4位址。<br>在1991年11月，互联网工程任务组（IETF）为了推迟这个问题发生的时间点，推出分类网络方案。1993年，推出网络地址转换（NAT）与无类别域间路由（CIDR）。但是这些过渡方案皆无法阻止地址枯竭问题的发生，只能减缓它的发生速度，最终的解决方案，仍然需要转换到IPv6。</p>
-<h1 id="分类网络"><a href="#分类网络" class="headerlink" title="分类网络"></a>分类网络</h1><p>IP地址由网络地址（Network Address）和主机地址（Host Address）组成。网络地址唯一标识一个网络，主机地址唯一标识网络中的设备。</p>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>前缀</th>
-<th>网络地址位数/主机地址位数</th>
-<th>范围</th>
-<th>网络数</th>
-<th>主机数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A类</td>
-<td>0</td>
-<td>8/24</td>
-<td>0.0.0.0 ~ 127.255.255.255</td>
-<td>2<sup>7</sup>=128</td>
-<td>2^24^ - 2</td>
-</tr>
-<tr>
-<td>B类</td>
-<td>10</td>
-<td>16/16</td>
-<td>128.0.0.0 ~ 191.255.255.255</td>
-<td>2<sup>14</sup>=16384</td>
-<td>2<sup>16</sup></td>
-</tr>
-<tr>
-<td>C类</td>
-<td>110</td>
-<td>24/8</td>
-<td>192.0.0.0 ~ 223.255.255.255</td>
-<td>2<sup>21</sup></td>
-<td>2<sup>8</sup></td>
-</tr>
-<tr>
-<td>D类</td>
-<td>1110</td>
-<td>未定义</td>
-<td>224.0.0.0 ~ 239.255.255.255</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>E类</td>
-<td>11110</td>
-<td>未定义</td>
-<td>240.0.0.0 ~ 247.255.255.255</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>例如192.168.100.11，首先看前8位，是192，根据上述范围可判断为C类网络， 网络地址位数为24位， 因此网络地址为192.168.100；主机地址位数为8位，因此主机地址为11。</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ol>
-<li><a href="https://zh.wikipedia.org/wiki/IPv4" target="_blank" rel="noopener">维基百科IPv4</a></li>
-</ol>
-
-          
+          <h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><p>同事微信上丢过来一条消息。<a href="http://10.200.48.106:9100/，服务无法访问了" target="_blank" rel="noopener">http://10.200.48.106:9100/，服务无法访问了</a> 。 我说，你在哪？ 他说，在家。 我说，你没登录VPN。 他说，我再试试。过了一会儿，他说，访问正常了，但为什么要登录VPN？ 我说，10开头的IP是私有IP，仅能在公司内网访问。他说，我如何知道哪些IP是私有 IP？ 我说，看下文。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/04/IPv4-Address/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
@@ -477,7 +420,7 @@
             <div class="links-of-author motion-element">
                 
                   <span class="links-of-author-item">
-                    <a href="https://github.com/weixi2008" target="_blank" title="GitHub">
+                    <a href="https://github.com/weixi62961" target="_blank" title="GitHub">
                       
                         <i class="fa fa-fw fa-github"></i>GitHub</a>
                   </span>
