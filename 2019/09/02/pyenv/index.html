@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引言实际工作中，我们通常会面临多个 python 版本共存的问题。例如 MacOS 自带的 Python 版本为2.7， 而为了开发需要安装 Python3。如果你为管理多个 Python 版本摸不着头绪，那么本文介绍的 pyenv 以及其插件 pyenv-virtualenv就是为你而准备的。  pyenv：管理系统中不同的 Python 版本。 pyenv-virtualenv：管理为不同项目">
+<meta name="keywords" content="技术, 工具, 生活">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 版本管理利器 pyenv 简明教程">
+<meta property="og:url" content="https://weixi62961.github.io/2019/09/02/pyenv/index.html">
+<meta property="og:site_name" content="萃取之心">
+<meta property="og:description" content="引言实际工作中，我们通常会面临多个 python 版本共存的问题。例如 MacOS 自带的 Python 版本为2.7， 而为了开发需要安装 Python3。如果你为管理多个 Python 版本摸不着头绪，那么本文介绍的 pyenv 以及其插件 pyenv-virtualenv就是为你而准备的。  pyenv：管理系统中不同的 Python 版本。 pyenv-virtualenv：管理为不同项目">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-01T16:57:32.870Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 版本管理利器 pyenv 简明教程">
+<meta name="twitter:description" content="引言实际工作中，我们通常会面临多个 python 版本共存的问题。例如 MacOS 自带的 Python 版本为2.7， 而为了开发需要安装 Python3。如果你为管理多个 Python 版本摸不着头绪，那么本文介绍的 pyenv 以及其插件 pyenv-virtualenv就是为你而准备的。  pyenv：管理系统中不同的 Python 版本。 pyenv-virtualenv：管理为不同项目">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://weixi62961.github.io/2019/09/02/pyenv/">
+
+
+
+
+
+  <title>Python 版本管理利器 pyenv 简明教程 | 萃取之心</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">萃取之心</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">传播有价值的信息</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://weixi62961.github.io/2019/09/02/pyenv/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="WeiXi">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="萃取之心">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python 版本管理利器 pyenv 简明教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-02T00:53:58+08:00">
+                2019-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/09/02/pyenv/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/02/pyenv/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>实际工作中，我们通常会面临多个 python 版本共存的问题。例如 MacOS 自带的 Python 版本为2.7， 而为了开发需要安装 Python3。如果你为管理多个 Python 版本摸不着头绪，那么本文介绍的 pyenv 以及其插件 pyenv-virtualenv就是为你而准备的。</p>
+<ul>
+<li>pyenv：管理系统中不同的 Python 版本。</li>
+<li>pyenv-virtualenv：管理为不同项目而设置不同的虚拟工作环境。<a id="more"></a>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1></li>
+<li>MacOS Mojave 10.14.6</li>
+<li>zsh 5.3 (x86_64-apple-darwin18.0)</li>
+</ul>
+<h1 id="pyenv-安装"><a href="#pyenv-安装" class="headerlink" title="pyenv 安装"></a>pyenv 安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 github 安装</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv.git ~/.pyenv</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置环境变量 </span></span><br><span class="line"><span class="comment"># 注意：shell 如果是 bash，.zshrc 替换为 .bash_profile</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PYENV_ROOT="$HOME/.pyenv"'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'export PATH="$PYENV_ROOT/bin:$PATH"'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重要：确保配置 pyenv init 在 shell 启动配置文件最后一行， 以操作 PATH 启用 shim </span></span><br><span class="line"><span class="comment"># -e 参数表示</span></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">'if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then\n  eval "$(pyenv init -)"\nfi'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启 shell, 使配置生效</span></span><br><span class="line"><span class="built_in">exec</span> <span class="string">"<span class="variable">$SHELL</span>"</span></span><br></pre></td></tr></table></figure>
+<h1 id="安装并配置新的-Python-版本"><a href="#安装并配置新的-Python-版本" class="headerlink" title="安装并配置新的 Python 版本"></a>安装并配置新的 Python 版本</h1><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. 安装 Xcode Command Line Tools</span></span><br><span class="line">xcode-select --install</span><br><span class="line"><span class="comment"># 2. 安装 Homebrew</span></span><br><span class="line">/usr/bin/ruby -e <span class="string">"<span class="variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span></span><br><span class="line"><span class="comment"># 3. 安装依赖</span></span><br><span class="line">brew install openssl readline sqlite3 xz zlib</span><br><span class="line"><span class="comment"># 4. 如果 Mojave 以上版本(10.14+)， 需要安装额外的 SDK headers</span></span><br><span class="line">sudo installer -pkg /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg -target /</span><br></pre></td></tr></table></figure>
+<h2 id="安装新的-python-版本-3-7-0"><a href="#安装新的-python-版本-3-7-0" class="headerlink" title="安装新的 python 版本 3.7.0"></a>安装新的 python 版本 3.7.0</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出所有可安装的版本</span></span><br><span class="line">pyenv install --list | grep 3.7</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 3.7.0 </span></span><br><span class="line"><span class="comment"># -v 显示安装详情</span></span><br><span class="line">pyenv install -v 3.7.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出已安装的版本, 当前版本 * 标识</span></span><br><span class="line">pyenv versions</span><br></pre></td></tr></table></figure>
+<h2 id="设置新安装的-python-版本"><a href="#设置新安装的-python-版本" class="headerlink" title="设置新安装的 python 版本"></a>设置新安装的 python 版本</h2><p>三种方式：全局（global），文件夹局部（local)，仅当前 shell(shell)会话。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式1 全局（global）， 设置后启动所有 shell 都默认此版本</span></span><br><span class="line"><span class="comment"># 原理是在 ~/.pyenv/version 中写入版本</span></span><br><span class="line">pyenv global 3.7.0</span><br><span class="line"><span class="comment"># 查看当前版本 为 3.7.0</span></span><br><span class="line">pyenv version</span><br><span class="line">python --version</span><br><span class="line">cat ~/.pyenv/version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2 文件夹局部（local)， 为当个目录及其所有的子目录设置 python 版本。 </span></span><br><span class="line"><span class="comment"># 原理是在当前目录下创建.python-version文件并写入版本</span></span><br><span class="line">mkdir <span class="built_in">test</span>-3.7.0 &amp;&amp; <span class="built_in">cd</span> <span class="built_in">test</span>-3.7.0</span><br><span class="line">pyenv <span class="built_in">local</span> 3.7.0</span><br><span class="line"><span class="comment"># 查看当前版本 为 3.7.0</span></span><br><span class="line">python --version</span><br><span class="line">cat ./.python-version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式3 当前 shell(shell)会话。</span></span><br><span class="line"><span class="comment"># 原理是设置环境变量PYENV_VERSION为所需版本</span></span><br><span class="line">pyenv shell 3.7.0</span><br><span class="line"><span class="comment"># 查看当前版本 为 3.7.0</span></span><br><span class="line">python --version</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$PYENV_VERSION</span></span><br></pre></td></tr></table></figure>
+<h1 id="pyenv-virtualenv"><a href="#pyenv-virtualenv" class="headerlink" title="pyenv-virtualenv"></a>pyenv-virtualenv</h1><h2 id="pyenv-virtualenv-安装"><a href="#pyenv-virtualenv-安装" class="headerlink" title="pyenv-virtualenv 安装"></a>pyenv-virtualenv 安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 通过 git 安装</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv</span><br><span class="line"><span class="comment"># 设置virtualenvs的自动激活，就是当你进入到你自己设置过的Python版本的目录下，自动激活virtualenvs的模式</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'eval "$(pyenv virtualenv-init -)"'</span> &gt;&gt; ~/.zshrc</span><br><span class="line"><span class="comment"># 重启 shell, 使配置生效</span></span><br><span class="line"><span class="built_in">exec</span> <span class="string">"<span class="variable">$SHELL</span>"</span></span><br></pre></td></tr></table></figure>
+<h2 id="pyenv-virtualenv-配置及使用"><a href="#pyenv-virtualenv-配置及使用" class="headerlink" title="pyenv-virtualenv 配置及使用"></a>pyenv-virtualenv 配置及使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 virtualenv，指定 Python 版本 3.7.0</span></span><br><span class="line">pyenv virtualenv 3.7.0 venv-3.7.0</span><br><span class="line"><span class="comment"># 列出创建的所有的 virtualenv</span></span><br><span class="line"><span class="comment"># 每个virtualenv有两个条目(例如 venv-3.7.0 与 3.7.0/envs/venv-3.7.0)，较短的一个只是一个符号链接。</span></span><br><span class="line">pyenv virtualenvs</span><br><span class="line"></span><br><span class="line"><span class="comment"># 激活 venv, 两种方式，方式1与方式2</span></span><br><span class="line">mkdir <span class="built_in">test</span>-venv &amp;&amp; <span class="built_in">cd</span> <span class="built_in">test</span>-venv</span><br><span class="line"><span class="comment"># 方式1 自动激活, 退出目录自动失效</span></span><br><span class="line">pyenv <span class="built_in">local</span> venv-3.7.0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2 手动激活， 退出目录仍有效，需要deactivate</span></span><br><span class="line"><span class="built_in">cd</span> .. &amp;&amp; rm <span class="built_in">test</span>-venv/.python-version &amp;&amp; <span class="built_in">cd</span> <span class="built_in">test</span>-venv</span><br><span class="line">pyenv activate venv-3.7.0</span><br><span class="line"><span class="comment"># 失效</span></span><br><span class="line">pyenv deactivate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除 virtualenv， 输入 y</span></span><br><span class="line">pyenv uninstall venv-3.7.0</span><br><span class="line"><span class="comment"># 确认</span></span><br><span class="line">pyenv virtualenvs</span><br></pre></td></tr></table></figure>
+<h2 id="在-PyCharm-中配置-pyenv-virtualenv"><a href="#在-PyCharm-中配置-pyenv-virtualenv" class="headerlink" title="在 PyCharm 中配置 pyenv-virtualenv"></a>在 PyCharm 中配置 pyenv-virtualenv</h2><ol>
+<li>启动 pycharm, 载入工程。</li>
+<li>依次选择 Pycharm - Preference - Project:工程名 - Project Interpreter</li>
+<li>在右侧Project Interpreter点击下拉箭头 - show all - 点右下角 + 增加</li>
+<li>在弹出框中左侧选择 Virtualenv Environment, 右侧Check上 Existing environment 选择虚拟环境Python解析器 /Users/admin/.pyenv/versions/venv-3.7.0/bin/python</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener">pyenv from github</a></li>
+<li><a href="https://github.com/pyenv/pyenv-virtualenv" target="_blank" rel="noopener">pyenv-virtualenv from github</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>与我一起，传播价值！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="WeiXi 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    WeiXi
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://weixi62961.github.io/2019/09/02/pyenv/" title="Python 版本管理利器 pyenv 简明教程">https://weixi62961.github.io/2019/09/02/pyenv/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/04/IPv4-Address/" rel="next" title="IPv4 编址简明教程">
+                <i class="fa fa-chevron-left"></i> IPv4 编址简明教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="WeiXi">
+            
+              <p class="site-author-name" itemprop="name">WeiXi</p>
+              <p class="site-description motion-element" itemprop="description">分离有价值的信息，朝熵减的方向前进</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/weixi62961" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:weixi62961@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">2.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyenv-安装"><span class="nav-number">3.</span> <span class="nav-text">pyenv 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装并配置新的-Python-版本"><span class="nav-number">4.</span> <span class="nav-text">安装并配置新的 Python 版本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装依赖"><span class="nav-number">4.1.</span> <span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装新的-python-版本-3-7-0"><span class="nav-number">4.2.</span> <span class="nav-text">安装新的 python 版本 3.7.0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置新安装的-python-版本"><span class="nav-number">4.3.</span> <span class="nav-text">设置新安装的 python 版本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pyenv-virtualenv"><span class="nav-number">5.</span> <span class="nav-text">pyenv-virtualenv</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pyenv-virtualenv-安装"><span class="nav-number">5.1.</span> <span class="nav-text">pyenv-virtualenv 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pyenv-virtualenv-配置及使用"><span class="nav-number">5.2.</span> <span class="nav-text">pyenv-virtualenv 配置及使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-PyCharm-中配置-pyenv-virtualenv"><span class="nav-number">5.3.</span> <span class="nav-text">在 PyCharm 中配置 pyenv-virtualenv</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WeiXi</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://weixi.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://weixi62961.github.io/2019/09/02/pyenv/';
+          this.page.identifier = '2019/09/02/pyenv/';
+          this.page.title = 'Python 版本管理利器 pyenv 简明教程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://weixi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
